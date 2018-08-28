@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t DEV_IMG -f Dockerfile.dev .
+
+script:
+  - docker run DEV_IMG yarn run test -- --coverage
