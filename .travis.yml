@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run test/iamge yarn run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "docker-react-test"
+  env: "DockerReactTest-env"
+  bucket-name: "elasticbeanstalk-ap-southeast-1-996604352733"
+  bucket_path: "docker-react-test"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
